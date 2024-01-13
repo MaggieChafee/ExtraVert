@@ -12,3 +12,4 @@ C:\Users\maggi\workspace\c#\ExtraVert\obj\Debug\net6.0\refint\ExtraVert.dll
 C:\Users\maggi\workspace\c#\ExtraVert\obj\Debug\net6.0\ExtraVert.pdb
 C:\Users\maggi\workspace\c#\ExtraVert\obj\Debug\net6.0\ExtraVert.genruntimeconfig.cache
 C:\Users\maggi\workspace\c#\ExtraVert\obj\Debug\net6.0\ref\ExtraVert.dll
+C:\Users\maggi\workspace\c#\ExtraVert\obj\Debug\net6.0\ExtraVert.sourcelink.json
