@@ -11,7 +11,8 @@ List<Plant> plants = new List<Plant>()
         AskingPrice = 15.00M,
         City = "Asheville, NC",
         Zip = 26478,
-        Sold = false
+        Sold = false,
+        AvailableUntil = new DateTime(2024, 3, 1)
     },
     new Plant()
     {
@@ -20,7 +21,8 @@ List<Plant> plants = new List<Plant>()
         AskingPrice = 22.00M,
         City = "Raleigh, NC",
         Zip = 20520,
-        Sold = false
+        Sold = false,
+        AvailableUntil = new DateTime(2204, 2, 14)
     },
     new Plant()
     {
@@ -29,7 +31,8 @@ List<Plant> plants = new List<Plant>()
         AskingPrice = 12.00M,
         City = "Richmond, VA",
         Zip = 29562,
-        Sold = true
+        Sold = false,
+        AvailableUntil = new DateTime(2024, 2, 27)
     },
     new Plant()
     {
@@ -38,7 +41,8 @@ List<Plant> plants = new List<Plant>()
         AskingPrice = 30.00M,
         City = "Charlottesville, VA",
         Zip = 27654,
-        Sold = false
+        Sold = false,
+        AvailableUntil = new DateTime(2024, 1, 10)
     }
 };
 // *********** METHODS ************
@@ -48,7 +52,7 @@ List<Plant> plants = new List<Plant>()
 {
     for (int i = 0; i < plants.Count; i++)
     {
-        Console.WriteLine($"{i + 1}. A {plants[i].Species} in {plants[i].City} {(plants[i].Sold ? "was sold" : "is available")} for ${plants[i].AskingPrice} dollars.");
+        Console.WriteLine($"{i + 1}. A {plants[i].Species} in {plants[i].City} {(plants[i].Sold ? "was sold" : "is available")} for ${plants[i].AskingPrice} dollar until {plants[i].AvailableUntil}");
     }
 } 
 
@@ -96,6 +100,25 @@ Start by entering the plant species:");
     
     bool plantSold = false;
 
+    DateTime dateInput = DateTime.MinValue;
+    while (dateInput == DateTime.MinValue)
+    {
+        Console.WriteLine("How long is this plant available for adoption? Start by entering the year. Please enter as (MM/DD/YYYY)");
+        try
+        {
+            dateInput = Convert.ToDateTime(Console.ReadLine());
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Please type date as (MM/DD/YYYY).");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            Console.WriteLine("Please follow the prompt!");
+        }
+    }
+
     Plant createPlant = new Plant
     {
         Species = plantSpecies,
@@ -103,7 +126,8 @@ Start by entering the plant species:");
         AskingPrice = plantPrice,
         City = plantCity,
         Zip = plantZip,
-        Sold = plantSold
+        Sold = plantSold,
+        AvailableUntil = dateInput
     };
 
     plants.Add(createPlant);
@@ -119,7 +143,7 @@ void adoptPlant()
 
 Here are the currently available plants:
 ");
-    List<Plant> availablePlants = plants.Where(s => s.Sold == false).ToList();
+    List<Plant> availablePlants = plants.Where(s => s.Sold == false && s.AvailableUntil > DateTime.Now).ToList();
     
     if (availablePlants.Count == 0)
     {
@@ -214,7 +238,7 @@ Which Plant would you like to remove?
 // Plant of the Day
 void PlantOfTheDay()
 {
-    List<Plant> availablePlants = plants.Where(s => s.Sold == false).ToList();
+    List<Plant> availablePlants = plants.Where(s => s.Sold == false && s.AvailableUntil > DateTime.Now).ToList();
     Random random = new Random();
     int randomIntegar = random.Next(0, availablePlants.Count);
     Plant randomPlant = availablePlants[randomIntegar];
@@ -272,6 +296,37 @@ Find the perfect plant based on lighting where you live. How would you describe 
     }
   
 }
+
+// View Statistics
+void viewStats()
+{
+    // lowest price
+   
+    Plant findLowestPrice = plants.OrderBy(p => p.AskingPrice).FirstOrDefault();
+    
+    // number of available plants
+    List<Plant> availablePlants = plants.Where(s => s.Sold == false && s.AvailableUntil > DateTime.Now).ToList();
+    int statAvailable = availablePlants.Count();
+
+    // plant with highest light needs
+    Plant findHighestNeed = plants.OrderByDescending(p => p.LightNeeds).FirstOrDefault();
+
+    // Average Light Needs
+    double statLightNeed = plants.Average(p => p.LightNeeds);
+
+    // Percentage of plants Adopted
+    double allPlants = plants.Count();
+    double percentAvail = (statAvailable / allPlants) * 100;
+    double percentUnavail = 100 - percentAvail;
+    
+    Console.WriteLine(@$" ********** STATISTICS **********
+
+    Lowest Price Plant: {findLowestPrice?.Species}
+    Number of Plants Available: {(statAvailable)}
+    Plant with Highest Light Need:  {(findHighestNeed?.Species)}
+    Average Light Need: {(statLightNeed)}
+    Percentage of Plants Adopted: {(percentUnavail)}%");
+}
 // ********** Greeting and Main Menu **********
 string greeting = @"    **********  Welcome to ExtraVert! ********** 
 The best place to browse, buy, and list secondhand plants.";
@@ -284,6 +339,7 @@ Choose an option:
     4. Delist a Plant
     5. Plant of the Day 
     6. Search for a Plant
+    7. View Stats
     0. Exit
 ";
 
@@ -307,7 +363,7 @@ while (choice != "0")
     {
         case "1":
             Console.Clear();
-            Console.WriteLine("    **** ALL PLANTS **** ");
+            Console.WriteLine(" ********** ALL PLANTS ********** ");
             ListPlants();
             MainMenu();
             break;
@@ -336,6 +392,11 @@ while (choice != "0")
             searchPlants();
             MainMenu();
             break;
+        case "7":
+            Console.Clear();
+            viewStats();
+            MainMenu();
+            break;
         case "0":
             Console.WriteLine("Goodbye.");
             break;
@@ -344,4 +405,3 @@ while (choice != "0")
             break;
     }   
 }
-
