@@ -1,0 +1,15 @@
+C:\Users\maggi\workspace\c#\ExtraVert\bin\Debug\net6.0\ExtraVert.exe
+C:\Users\maggi\workspace\c#\ExtraVert\bin\Debug\net6.0\ExtraVert.deps.json
+C:\Users\maggi\workspace\c#\ExtraVert\bin\Debug\net6.0\ExtraVert.runtimeconfig.json
+C:\Users\maggi\workspace\c#\ExtraVert\bin\Debug\net6.0\ExtraVert.dll
+C:\Users\maggi\workspace\c#\ExtraVert\bin\Debug\net6.0\ExtraVert.pdb
+C:\Users\maggi\workspace\c#\ExtraVert\obj\Debug\net6.0\ExtraVert.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maggi\workspace\c#\ExtraVert\obj\Debug\net6.0\ExtraVert.AssemblyInfoInputs.cache
+C:\Users\maggi\workspace\c#\ExtraVert\obj\Debug\net6.0\ExtraVert.AssemblyInfo.cs
+C:\Users\maggi\workspace\c#\ExtraVert\obj\Debug\net6.0\ExtraVert.csproj.CoreCompileInputs.cache
+C:\Users\maggi\workspace\c#\ExtraVert\obj\Debug\net6.0\ExtraVert.dll
+C:\Users\maggi\workspace\c#\ExtraVert\obj\Debug\net6.0\refint\ExtraVert.dll
+C:\Users\maggi\workspace\c#\ExtraVert\obj\Debug\net6.0\ExtraVert.pdb
+C:\Users\maggi\workspace\c#\ExtraVert\obj\Debug\net6.0\ExtraVert.genruntimeconfig.cache
+C:\Users\maggi\workspace\c#\ExtraVert\obj\Debug\net6.0\ref\ExtraVert.dll
+C:\Users\maggi\workspace\c#\ExtraVert\obj\Debug\net6.0\ExtraVert.sourcelink.json
